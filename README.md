@@ -6,6 +6,6 @@ Starpage is startpage with Catppuccin Mocha colors. Now there's not many functio
 
 ## How to change links?
 - 1. Install "Cookie Editor" for your browser
-- 2. Open editor and redact cookie named "links"
+- 2. Open editor and redact cookie named "links" (format of every link: {'name': 'insert_name', url: 'insert_url'}
 - 3. Name: name of site, you'll see it on this page
 - 4. URL: URL to page. Don't forget to add "https://" in the start of URL! 
