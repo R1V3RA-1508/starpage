@@ -1,0 +1,30 @@
+<!--<div class="link">
+      <a href="https://youtube.com">
+        <img src='https://favicon.is/youtube.com' alt="" class='link-img'>
+        <h1>YouTube</h1>
+      </a>
+    </div> 
+    <div class="link">
+      <a href="https://discord.com">
+        <img src='https://favicon.is/discord.com' alt="" class='link-img'>
+        <h1>Discord</h1>
+      </a>
+    </div>
+    <div class="link">
+      <a href="https://reddit.com">
+        <img src='https://favicon.is/reddit.com' alt="" class='link-img'>
+        <h1>Reddit</h1>
+      </a>
+    </div>
+    <div class="link">
+      <a href="https://github.com">
+        <img src='https://favicon.is/github.com' alt="" class='link-img'>
+        <h1>GitHub</h1>
+      </a>
+    </div>
+    <div class="link">
+      <a href="https://chat.deepseek.com">
+        <img src='https://favicon.is/chat.deepseek.com' alt="" class='link-img'>
+        <h1>DeepSeek</h1>
+      </a>
+    </div>-->
