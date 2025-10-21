@@ -1,8 +1,8 @@
 # What is Starpage
 Starpage is startpage with Catppuccin Mocha colors. Now there's not many functions, but i plan to add:
-[x] Customisable links list (using cookies)
-[] Customisable logo (again, using cookies)
-[] Search bar
+- [x] Customisable links list (using cookies)
+- [ ] Customisable logo (again, using cookies)
+- [ ] Search bar
 
 ## How to change links?
 1. Install "Cookie Editor" for your browser
