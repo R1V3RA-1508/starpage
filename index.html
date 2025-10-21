@@ -9,41 +9,12 @@
 <body>
   <img src="https://archlinux.org/static/logos/archlinux-logo-light-scalable.svg" alt="logo" id='logo'>
   <div class="links-wrap"> 
-    <div class="links" id='links'>
-    <!--<div class="link">
-      <a href="https://youtube.com">
-        <img src='https://favicon.is/youtube.com' alt="" class='link-img'>
-        <h1>YouTube</h1>
-      </a>
-    </div> 
-    <div class="link">
-      <a href="https://discord.com">
-        <img src='https://favicon.is/discord.com' alt="" class='link-img'>
-        <h1>Discord</h1>
-      </a>
-    </div>
-    <div class="link">
-      <a href="https://reddit.com">
-        <img src='https://favicon.is/reddit.com' alt="" class='link-img'>
-        <h1>Reddit</h1>
-      </a>
-    </div>
-    <div class="link">
-      <a href="https://github.com">
-        <img src='https://favicon.is/github.com' alt="" class='link-img'>
-        <h1>GitHub</h1>
-      </a>
-    </div>
-    <div class="link">
-      <a href="https://chat.deepseek.com">
-        <img src='https://favicon.is/chat.deepseek.com' alt="" class='link-img'>
-        <h1>DeepSeek</h1>
-      </a>
-    </div>-->
+    <div class="links" id='links'> 
     </div>
   </div>
   <script>
     const links = document.getElementById('links');
+    const logo = document.getElementById('logo');
     let defaultLinks = [
       {'name': 'YouTube', url: 'https://youtube.com'},
       {'name': 'Reddit', url: 'https://reddit.com'},
@@ -54,8 +25,13 @@
     d.setTime(d.getTime() + (1000*24*60*60*1000));
     let expires = "expires=" + d.toUTCString();
     if (!getCookie('links')){
-      document.cookie = 'links=' + JSON.stringify(defaultLinks) + ';expires=31 December 2040';
-    } 
+      document.cookie = 'links=' + JSON.stringify(defaultLinks) + ';expires=31 December 2040;';
+    };
+    if (!getCookie('logo_url')){
+      document.cookie = 'logo_url=' + logo.src + ';expires=31 December 2040';
+    } else {
+      logo.src = getCookie('logo_url');
+    };
     function getCookie(cname) {
       let name = cname + "=";
       let ca = document.cookie.split(';');
