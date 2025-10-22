@@ -8,6 +8,10 @@
 </head>
 <body>
   <img src="https://archlinux.org/static/logos/archlinux-logo-light-scalable.svg" alt="logo" id='logo'>
+  <div class="searchbar">
+    <input type="text" id='searchbar'>
+    <img src="./search.svg" id='search' alt="" onclick=searchq(search.value)>
+  </div>
   <div class="links-wrap"> 
     <div class="links" id='links'> 
     </div>
@@ -15,12 +19,14 @@
   <script>
     const links = document.getElementById('links');
     const logo = document.getElementById('logo');
+    const search = document.getElementById('searchbar');
+    const searchbtn = document.getElementById('search');
     let defaultLinks = [
       {'name': 'YouTube', url: 'https://youtube.com'},
       {'name': 'Reddit', url: 'https://reddit.com'},
       {'name': 'Deepseek', url: 'https://chat.deepseek.com'},
       {'name': 'Discord', url: 'https://discord.com/channels/@me'},
-    ]
+    ] 
     const d = new Date();
     d.setTime(d.getTime() + (1000*24*60*60*1000));
     let expires = "expires=" + d.toUTCString();
@@ -31,6 +37,9 @@
       document.cookie = 'logo_url=' + logo.src + ';expires=31 December 2040';
     } else {
       logo.src = getCookie('logo_url');
+    };
+    if (!getCookie('searchQuery')){
+      document.cookie = 'searchQuery=https://duckduckgo.com/search?q=;expires=31 December 2040;';
     };
     function getCookie(cname) {
       let name = cname + "=";
@@ -52,9 +61,20 @@
                        <h1>${bookmark.name}</h1>
                       </a>
                    </div> 
-                    `;}) 
-    console.log(linksc);
-    console.log(defaultLinks)
+                    `;});
+
+    function searchq(value){
+      window.location.href = getCookie('searchQuery') + value;
+    }
+
+    document.addEventListener('keypress', (key) => {
+      if (key.key == 'Enter'){
+        searchq(search.value);
+      }
+    }); 
+
+    //console.log(linksc);
+    //console.log(defaultLinks)
   </script>
 </body>
 </html>
