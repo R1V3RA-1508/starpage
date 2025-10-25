@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <img src="https://archlinux.org/static/logos/archlinux-logo-light-scalable.svg" alt="logo" id='logo'>
+  <img title='Click to edit config or press C' src="https://archlinux.org/static/logos/archlinux-logo-light-scalable.svg" alt="logo" id='logo' onclick='toggleModal()'>
   <div class="searchbar">
     <input type="text" id='searchbar'>
     <img src="./search.svg" id='search' alt="" onclick=searchq(search.value)>
@@ -16,11 +16,43 @@
     <div class="links" id='links'> 
     </div>
   </div>
+  <div class="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h1>Config editor</h1>
+        <span onclick='toggleModal()'><h1>X</h1></span>
+      </div>
+      <div class="modal-content">
+        <div class="links-edit edit-block">
+          <h1>Links</h1>
+            <textarea name="links" id="links-edit" class='editor' placeholder="[{'name': name, 'url': url}]"></textarea>
+        </div>
+        <div class="logo-edit edit-block">
+          <h1>Logo link</h1>
+          <textarea name="links" id="logo-edit" class='editor' placeholder='Link to picture'></textarea>
+        </div>
+        <div class="search-edit edit-block">
+          <h1>Search query link</h1>
+          <textarea name="searchQuery" id="sq-edit" class='editor' placeholder='DuckDuckGo: https://duckduckgo.com/search?q=
+Google: https://google.com/search?q=
+Yandex: https://yandex.ru/search?text='></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id='apply' onclick='applyCfg()'>Apply</button>
+      </div>
+    </div>
+  </div>
   <script>
     const links = document.getElementById('links');
     const logo = document.getElementById('logo');
     const search = document.getElementById('searchbar');
     const searchbtn = document.getElementById('search');
+    const linksEdit = document.getElementById('links-edit');
+    const logoEdit = document.getElementById('logo-edit');
+    const sqEdit = document.getElementById('sq-edit');
+    const applyBtn = document.getElementById('apply');
+    const modal = document.querySelector('.modal-overlay');
     let defaultLinks = [
       {'name': 'YouTube', url: 'https://youtube.com'},
       {'name': 'Reddit', url: 'https://reddit.com'},
@@ -53,6 +85,10 @@
         return c.substring(name.length, c.length);
       }}}
     let linksc = JSON.parse(getCookie('links'));
+    linksEdit.value = JSON.stringify(linksc);
+    logoEdit.value = getCookie('logo_url');
+    sqEdit.value = getCookie('searchQuery');
+
     linksc.forEach((bookmark, index) => {
                 links.innerHTML += `
                    <div class="link">
@@ -71,7 +107,29 @@
       if (key.key == 'Enter'){
         searchq(search.value);
       }
+      if (key.key == 'c' && document.activeElement != search){
+        toggleModal();
+      }
     }); 
+ 
+    function toggleModal(){
+      if (modal.style.display == 'none'){
+        modal.style.display = 'flex';
+      } else {
+        modal.style.display = 'none';
+      }
+    }
+
+    function applyCfg(){
+      if (linksEdit.value != '' && logoEdit.value != '' && sqEdit.value != ''){
+        document.cookie = 'links=' + linksEdit.value + ';expires=31 December 2040;';
+        document.cookie = 'logo_url=' + logoEdit.value + ';expires=31 December 2040;';
+        document.cookie = 'searchQuery=' + sqEdit.value + ';expires=31 December 2040;';
+ 
+        applyBtn.innerHTML = 'Applied';
+        setTimeout(() => {applyBtn.innerHTML='Apply'}, 1500);
+      } 
+    }
 
     //console.log(linksc);
     //console.log(defaultLinks)
